@@ -1,124 +1,35 @@
-# Image Captioning Project
+## ⚙️ Installation
 
-CNN-RNN based Image Captioning
-
----
-
-## 🎯 Objective
-
-The goal of this project is to build an **Image Captioning model** that automatically
-generates a natural language description for a given image.  
-The model extracts visual features using a **Convolutional Neural Network (CNN)** and
-generates captions using a **Recurrent Neural Network (RNN, LSTM)**.
-
----
-
-## 🧠 Approach
-
-### Dataset
-- MS COCO Captions Dataset
-
-### Model Architecture
-- CNN Encoder: ResNet50 (pretrained)
-- RNN Decoder: LSTM
-- (Optional) Attention Mechanism
-
-### Training Strategy
-- Teacher Forcing
-- Cross-Entropy Loss
-- Adam Optimizer
-
-### Evaluation
-- BLEU-1, BLEU-4 scores
-- Qualitative comparison between generated captions and ground truth captions
-
----
-
-## 🔧 Core Model Architecture (Encoder–Decoder)
-
-```python
-class CaptionModel(nn.Module):
-    def __init__(self, encoder, decoder):
-        super().__init__()
-        self.encoder = encoder
-        self.decoder = decoder
-
-    def forward(self, images, captions):
-        features = self.encoder(images)
-        outputs = self.decoder(features, captions)
-        return outputs
-This model follows an encoder–decoder architecture, where a CNN extracts visual
-features from images and an LSTM generates captions sequentially based on those features.
-
-🏋️ Training with Teacher Forcing
-python
-코드 복사
-captions_input = captions[:, :-1]
-captions_target = captions[:, 1:]
-
-outputs = model(images, captions_input)
-loss = criterion(
-    outputs.reshape(-1, outputs.size(-1)),
-    captions_target.reshape(-1)
-)
-During training, teacher forcing is applied by shifting the input and target
-caption sequences, enabling stable and efficient learning.
-
-📐 BLEU Score Evaluation
-python
-코드 복사
-from nltk.translate.bleu_score import corpus_bleu
-
-bleu4 = corpus_bleu(
-    references,
-    hypotheses,
-    weights=(0.25, 0.25, 0.25, 0.25)
-)
-BLEU-4 measures n-gram overlap between generated captions and ground truth captions,
-providing a quantitative evaluation of caption quality.
-
-📁 Project Structure
-text
-코드 복사
-image-captioning-project/
-├── README.md
-├── config.py
-├── utils.py
-├── dataset.py
-├── model.py
-├── main.py
-└── results/
-⚙️ Installation
-bash
-코드 복사
+```bash
 pip install torch torchvision torchaudio
 pip install pillow tqdm numpy nltk pycocotools
-▶ How to Run
-Download the MS COCO dataset and place it under the data/ directory.
+🧩 File Descriptions
+1. config.py
+Manages dataset paths and hyperparameters
 
-Update dataset paths in config.py.
+Centralized configuration for training and model settings
 
-Train the model:
+2. utils.py
+Caption preprocessing and tokenization
 
-bash
-코드 복사
-python main.py
-The best model checkpoint is saved in the results/ directory.
+Vocabulary construction and padding
 
-🧪 Experiment Settings
-CNN Backbone: ResNet50 (pretrained)
+3. dataset.py
+Loads image-caption pairs from MS COCO
 
-RNN Decoder: LSTM (hidden size = 512)
+Implements PyTorch Dataset class
 
-Batch size: 64
+4. model.py
+CNN Encoder (ResNet50)
 
-Epochs: 10
+LSTM Decoder for caption generation
 
-Optimizer: Adam
+5. main.py
+Training loop
 
-Learning rate: 1e-3
+BLEU score evaluation
 
-Max caption length: 30
+Sample caption generation
 
 📊 Results
 Metric	Score
@@ -135,13 +46,6 @@ A man riding a skateboard on a city street.
 
 [Prediction]
 A person riding a skateboard down the street.
-⚠️ Limitations
-The model may generate generic captions for complex scenes.
-
-Fine-grained object relationships and counts are sometimes inaccurate.
-
-Greedy decoding limits caption diversity.
-
 🔍 Future Work
 Integrate attention mechanism
 
@@ -150,14 +54,5 @@ Apply beam search decoding
 Evaluate using CIDEr and METEOR metrics
 
 📝 Conclusion
-This project demonstrates the effectiveness of combining CNN-based visual feature
-extraction with RNN-based sequence generation for image captioning tasks.
-Through this work, we gained practical experience in multimodal deep learning and
-sequence-to-sequence modeling.
-
-📚 References
-Vinyals et al., Show and Tell: A Neural Image Caption Generator, CVPR 2015
-
-Lin et al., Microsoft COCO: Common Objects in Context, ECCV 2014
-
-PyTorch Documentation: https://pytorch.org
+This project demonstrates the effectiveness of combining CNN-based visual feature extraction with RNN-based sequence generation for image captioning tasks.
+Through this work, we gained practical experience in multimodal deep learning and sequence-to-sequence modeling.
