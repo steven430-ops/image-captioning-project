@@ -1,6 +1,51 @@
-## ⚙️ Installation
+# Image Captioning Project
 
-```bash
+CNN-RNN based Image Captioning
+
+---
+
+## 🎯 Objective
+
+The goal of this project is to build an **Image Captioning model** that automatically generates a natural language description for a given image.  
+The model extracts visual features using a **Convolutional Neural Network (CNN)** and generates captions using a **Recurrent Neural Network (RNN, LSTM)**.
+
+---
+
+## 🧠 Approach
+
+- **Dataset**
+  - MS COCO Captions Dataset
+
+- **Model Architecture**
+  - CNN Encoder: ResNet50 (pretrained)
+  - RNN Decoder: LSTM
+  - (Optional) Attention Mechanism
+
+- **Training Strategy**
+  - Teacher Forcing
+  - Cross-Entropy Loss
+  - Adam Optimizer
+
+- **Evaluation**
+  - BLEU-1, BLEU-4 scores
+  - Qualitative comparison between generated captions and ground truth captions
+
+---
+
+## 📁 Project Structure
+
+```text
+image-captioning-project/
+├── README.md
+├── config.py
+├── utils.py
+├── dataset.py
+├── model.py
+├── main.py
+└── results/
+⚙️ Installation
+bash
+코드 복사
 pip install torch torchvision torchaudio
 pip install pillow tqdm numpy nltk pycocotools
 🧩 File Descriptions
@@ -56,3 +101,6 @@ Evaluate using CIDEr and METEOR metrics
 📝 Conclusion
 This project demonstrates the effectiveness of combining CNN-based visual feature extraction with RNN-based sequence generation for image captioning tasks.
 Through this work, we gained practical experience in multimodal deep learning and sequence-to-sequence modeling.
+
+yaml
+코드 복사
