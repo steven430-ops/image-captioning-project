@@ -20,15 +20,56 @@ The model extracts visual features using a **Convolutional Neural Network (CNN)*
   - CNN Encoder: ResNet50 (pretrained)
   - RNN Decoder: LSTM
   - (Optional) Attention Mechanism
+ 
+### Model Architecture (Core Code)
+
+```python
+class CaptionModel(nn.Module):
+    def __init__(self, encoder, decoder):
+        super().__init__()
+        self.encoder = encoder
+        self.decoder = decoder
+
+    def forward(self, images, captions):
+        features = self.encoder(images)
+        outputs = self.decoder(features, captions)
+        return outputs
+This model follows an encoder–decoder architecture where a CNN extracts visual features
+and an LSTM generates captions sequentially.
 
 - **Training Strategy**
   - Teacher Forcing
   - Cross-Entropy Loss
   - Adam Optimizer
 
+### Training Strategy (Snippet)
+
+```python
+captions_input = captions[:, :-1]
+captions_target = captions[:, 1:]
+
+outputs = model(images, captions_input)
+loss = criterion(
+    outputs.reshape(-1, outputs.size(-1)),
+    captions_target.reshape(-1)
+)
+Teacher forcing is applied by shifting the input and target captions during training.
+
+
+
+
 - **Evaluation**
   - BLEU-1, BLEU-4 scores
   - Qualitative comparison between generated captions and ground truth captions
+
+```python
+from nltk.translate.bleu_score import corpus_bleu
+
+bleu4 = corpus_bleu(references, hypotheses,
+                    weights=(0.25, 0.25, 0.25, 0.25))
+BLEU-4 is used to evaluate n-gram level similarity between generated captions
+and ground truth captions.
+
 
 ---
 
