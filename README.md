@@ -43,7 +43,6 @@ features from images and an LSTM generates captions sequentially based on those 
   - Cross-Entropy Loss
   - Adam Optimizer
 
-```markdown
 ### 🏋️ Training with Teacher Forcing
 
 ```python
@@ -62,7 +61,6 @@ caption sequences, enabling stable and efficient learning.
   - BLEU-1, BLEU-4 scores
   - Qualitative comparison between generated captions and ground truth captions
 
-```markdown
 ### 📐 BLEU Score Evaluation
 
 ```python
