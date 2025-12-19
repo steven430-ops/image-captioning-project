@@ -44,8 +44,8 @@ image-captioning-project/
 ├── main.py
 └── results/
 ⚙️ Installation
-bash
-코드 복사
+
+
 pip install torch torchvision torchaudio
 pip install pillow tqdm numpy nltk pycocotools
 🧩 File Descriptions
@@ -84,8 +84,7 @@ BLEU-4	0.29
 BLEU scores are reported on the validation set using greedy decoding.
 
 🖼️ Sample Output
-css
-코드 복사
+
 [Ground Truth]
 A man riding a skateboard on a city street.
 
@@ -102,5 +101,3 @@ Evaluate using CIDEr and METEOR metrics
 This project demonstrates the effectiveness of combining CNN-based visual feature extraction with RNN-based sequence generation for image captioning tasks.
 Through this work, we gained practical experience in multimodal deep learning and sequence-to-sequence modeling.
 
-yaml
-코드 복사
