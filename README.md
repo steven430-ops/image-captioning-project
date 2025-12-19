@@ -1,5 +1,4 @@
-# image-captioning-project
-CNN-RNN based Image Captioning
+
 # Image Captioning Project
 
 CNN-RNN based Image Captioning
