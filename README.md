@@ -38,15 +38,9 @@ class CaptionModel(nn.Module):
 The model follows an encoder–decoder architecture, where a CNN extracts visual
 features from images and an LSTM generates captions sequentially based on those features.
 
-
-- **Training Strategy**
-  - Teacher Forcing
-  - Cross-Entropy Loss
-  - Adam Optimizer
-
-### 🏋️ Training with Teacher Forcing
-
-```python
+🏋️ Training with Teacher Forcing
+python
+코드 복사
 captions_input = captions[:, :-1]
 captions_target = captions[:, 1:]
 
@@ -58,13 +52,9 @@ loss = criterion(
 During training, teacher forcing is applied by shifting the input and target
 caption sequences, enabling stable and efficient learning.
 
-- **Evaluation**
-  - BLEU-1, BLEU-4 scores
-  - Qualitative comparison between generated captions and ground truth captions
-
-### 📐 BLEU Score Evaluation
-
-```python
+📐 BLEU Score Evaluation
+python
+코드 복사
 from nltk.translate.bleu_score import corpus_bleu
 
 bleu4 = corpus_bleu(
@@ -74,7 +64,6 @@ bleu4 = corpus_bleu(
 )
 BLEU-4 measures n-gram overlap between generated captions and ground truth captions,
 providing a quantitative evaluation of caption quality.
-
 ---
 
 ## 📁 Project Structure
