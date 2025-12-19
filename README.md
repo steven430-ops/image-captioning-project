@@ -38,6 +38,7 @@ class CaptionModel(nn.Module):
 The model follows an encoder–decoder architecture, where a CNN extracts visual
 features from images and an LSTM generates captions sequentially based on those features.
 
+
 - **Training Strategy**
   - Teacher Forcing
   - Cross-Entropy Loss
